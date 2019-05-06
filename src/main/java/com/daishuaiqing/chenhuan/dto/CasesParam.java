@@ -3,6 +3,8 @@ package com.daishuaiqing.chenhuan.dto;
 import lombok.Data;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.persistence.Column;
+
 @Data
 public class CasesParam  {
 
@@ -26,5 +28,10 @@ public class CasesParam  {
     @ApiModelProperty(value="关键词")
     private String keyWords;
 
-
+    /**
+     * 内容
+     */
+    @ApiModelProperty(value="内容")
+    private String content;
+    
 }

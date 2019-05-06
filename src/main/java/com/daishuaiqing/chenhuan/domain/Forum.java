@@ -41,6 +41,12 @@ public class Forum  {
     private String keyWords;
 
     /**
+     * 内容
+     */
+    @Column(name = "content")
+    private String content;
+
+    /**
      * 创建时间
      */
     @Column(name = "create_time")

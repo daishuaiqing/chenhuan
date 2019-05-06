@@ -26,4 +26,10 @@ public class ForumParam  {
     @ApiModelProperty(value="关键词")
     private String keyWords;
 
+    /**
+     * 内容
+     */
+    @ApiModelProperty(value="内容")
+    private String content;
+
 }
