@@ -33,5 +33,5 @@ public class CasesParam  {
      */
     @ApiModelProperty(value="内容")
     private String content;
-    
+
 }

@@ -1,5 +1,6 @@
 package com.daishuaiqing.chenhuan.controller;
 
+import com.daishuaiqing.chenhuan.authc.RequiresAuthc;
 import com.daishuaiqing.chenhuan.dto.ForumParam;
 import com.daishuaiqing.chenhuan.query.PageParam;
 import com.daishuaiqing.chenhuan.service.ForumService;
@@ -34,6 +35,7 @@ public class ForumController {
     }
 
     @ApiOperation("新增")
+    @RequiresAuthc
     @PostMapping("/forum/add")
     public CommonResult add(@Valid @ApiParam @RequestBody ForumParam forumParam,
                             BindingResult bindingResult) {
@@ -45,12 +47,14 @@ public class ForumController {
     }
 
     @ApiOperation("删除")
+    @RequiresAuthc
     @GetMapping("/forum/delete/{id}")
     public CommonResult deleteById(@PathVariable("id") Long id) {
         return forumService.deleteById(id);
     }
 
     @ApiOperation("修改")
+    @RequiresAuthc
     @PostMapping("/forum/modify/{id}")
     public CommonResult modify(@PathVariable(name = "id",required = true) Long id,
                                @Valid @ApiParam @RequestBody ForumParam forumParam,

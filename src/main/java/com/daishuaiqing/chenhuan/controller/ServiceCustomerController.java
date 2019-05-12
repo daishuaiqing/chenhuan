@@ -1,5 +1,6 @@
 package com.daishuaiqing.chenhuan.controller;
 
+import com.daishuaiqing.chenhuan.authc.RequiresAuthc;
 import com.daishuaiqing.chenhuan.dto.ServiceCustomerParam;
 import com.daishuaiqing.chenhuan.query.PageParam;
 import com.daishuaiqing.chenhuan.service.ServiceCustomerService;
@@ -34,6 +35,7 @@ public class ServiceCustomerController {
     }
 
     @ApiOperation("新增")
+    @RequiresAuthc
     @PostMapping("/service_customer/add")
     public CommonResult add(@Valid @ApiParam @RequestBody ServiceCustomerParam serviceCustomerParam,
                             BindingResult bindingResult) {
@@ -45,12 +47,14 @@ public class ServiceCustomerController {
     }
 
     @ApiOperation("删除")
+    @RequiresAuthc
     @GetMapping("/service_customer/delete/{id}")
     public CommonResult deleteById(@PathVariable("id") Long id) {
         return serviceCustomerService.deleteById(id);
     }
 
     @ApiOperation("修改")
+    @RequiresAuthc
     @PostMapping("/service_customer/modify/{id}")
     public CommonResult modify(@PathVariable(name = "id",required = true) Long id,
                                @Valid @ApiParam @RequestBody ServiceCustomerParam serviceCustomerParam,

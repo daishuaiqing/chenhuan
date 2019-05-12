@@ -1,5 +1,6 @@
 package com.daishuaiqing.chenhuan.controller;
 
+import com.daishuaiqing.chenhuan.authc.RequiresAuthc;
 import com.daishuaiqing.chenhuan.dto.RequesterInfoParam;
 import com.daishuaiqing.chenhuan.query.PageParam;
 import com.daishuaiqing.chenhuan.service.RequesterInfoService;
@@ -34,6 +35,7 @@ public class RequesterInfoController {
     }
 
     @ApiOperation("新增")
+    @RequiresAuthc
     @PostMapping("/requester_info/add")
     public CommonResult add(@Valid @ApiParam @RequestBody RequesterInfoParam requesterInfoParam,
                             BindingResult bindingResult) {
@@ -45,12 +47,14 @@ public class RequesterInfoController {
     }
 
     @ApiOperation("删除")
+    @RequiresAuthc
     @GetMapping("/requester_info/delete/{id}")
     public CommonResult deleteById(@PathVariable("id") Long id) {
         return requesterInfoService.deleteById(id);
     }
 
     @ApiOperation("修改")
+    @RequiresAuthc
     @PostMapping("/requester_info/modify/{id}")
     public CommonResult modify(@PathVariable(name = "id",required = true) Long id,
                                @Valid @ApiParam @RequestBody RequesterInfoParam requesterInfoParam,

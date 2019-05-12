@@ -1,5 +1,6 @@
 package com.daishuaiqing.chenhuan.controller;
 
+import com.daishuaiqing.chenhuan.authc.RequiresAuthc;
 import com.daishuaiqing.chenhuan.dto.LinkParam;
 import com.daishuaiqing.chenhuan.query.PageParam;
 import com.daishuaiqing.chenhuan.service.LinkService;
@@ -34,6 +35,7 @@ public class LinkController {
     }
 
     @ApiOperation("新增")
+    @RequiresAuthc
     @PostMapping("/link/add")
     public CommonResult add(@Valid @ApiParam @RequestBody LinkParam linkParam,
                             BindingResult bindingResult) {
@@ -45,12 +47,14 @@ public class LinkController {
     }
 
     @ApiOperation("删除")
+    @RequiresAuthc
     @GetMapping("/link/delete/{id}")
     public CommonResult deleteById(@PathVariable("id") Long id) {
         return linkService.deleteById(id);
     }
 
     @ApiOperation("修改")
+    @RequiresAuthc
     @PostMapping("/link/modify/{id}")
     public CommonResult modify(@PathVariable(name = "id",required = true) Long id,
                                @Valid @ApiParam @RequestBody LinkParam linkParam,

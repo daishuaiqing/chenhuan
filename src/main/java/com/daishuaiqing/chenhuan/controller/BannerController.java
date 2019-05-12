@@ -1,5 +1,6 @@
 package com.daishuaiqing.chenhuan.controller;
 
+import com.daishuaiqing.chenhuan.authc.RequiresAuthc;
 import com.daishuaiqing.chenhuan.dto.BannerParam;
 import com.daishuaiqing.chenhuan.query.PageParam;
 import com.daishuaiqing.chenhuan.service.BannerService;
@@ -34,6 +35,7 @@ public class BannerController {
     }
 
     @ApiOperation("新增")
+    @RequiresAuthc
     @PostMapping("/banner/add")
     public CommonResult add(@Valid @ApiParam @RequestBody BannerParam bannerParam,
                             BindingResult bindingResult) {
@@ -45,12 +47,14 @@ public class BannerController {
     }
 
     @ApiOperation("删除")
+    @RequiresAuthc
     @GetMapping("/banner/delete/{id}")
     public CommonResult deleteById(@PathVariable("id") Long id) {
         return bannerService.deleteById(id);
     }
 
     @ApiOperation("修改")
+    @RequiresAuthc
     @PostMapping("/banner/modify/{id}")
     public CommonResult modify(@PathVariable(name = "id",required = true) Long id,
                                @Valid @ApiParam @RequestBody BannerParam bannerParam,

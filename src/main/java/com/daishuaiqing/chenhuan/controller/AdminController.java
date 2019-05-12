@@ -1,10 +1,9 @@
 package com.daishuaiqing.chenhuan.controller;
 
-import com.daishuaiqing.chenhuan.authc.RequiresAuthc;
-import com.daishuaiqing.chenhuan.dto.CompanyInfoParam;
+import com.daishuaiqing.chenhuan.dto.AdminParam;
 import com.daishuaiqing.chenhuan.query.PageParam;
-import com.daishuaiqing.chenhuan.service.CompanyInfoService;
-import com.daishuaiqing.chenhuan.query.CompanyInfoQuery;
+import com.daishuaiqing.chenhuan.service.AdminService;
+import com.daishuaiqing.chenhuan.query.AdminQuery;
 import com.daishuaiqing.chenhuan.vo.CommonResult;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -17,60 +16,68 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-public class CompanyInfoController {
+public class AdminController {
 
     @Autowired
-    private CompanyInfoService companyInfoService;
+    private AdminService adminService;
 
     @ApiOperation("单个查询")
-    @GetMapping("/company_info/find/{id}")
+    @GetMapping("/admin/find/{id}")
     public CommonResult findById(@PathVariable("id") Long id){
-        return new CommonResult().success(companyInfoService.findById(id));
+        return new CommonResult().success(adminService.findById(id));
     }
 
     @ApiOperation("全部")
-    @GetMapping("/company_info/find/all")
+    @GetMapping("/admin/find/all")
     public CommonResult findAll(){
-        return new CommonResult().success(companyInfoService.findAll());
+        return new CommonResult().success(adminService.findAll());
     }
 
     @ApiOperation("新增")
-    @RequiresAuthc
-    @PostMapping("/company_info/add")
-    public CommonResult add(@Valid @ApiParam @RequestBody CompanyInfoParam companyInfoParam,
+    @PostMapping("/admin/add")
+    public CommonResult add(@Valid @ApiParam @RequestBody AdminParam adminParam,
                             BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             return new CommonResult().validateFailed(bindingResult.getFieldError().getDefaultMessage());
         }else {
-            return new CommonResult().success(companyInfoService.add(companyInfoParam));
+            return new CommonResult().success(adminService.add(adminParam));
         }
     }
 
     @ApiOperation("删除")
-    @RequiresAuthc
-    @GetMapping("/company_info/delete/{id}")
+    @GetMapping("/admin/delete/{id}")
     public CommonResult deleteById(@PathVariable("id") Long id) {
-        return companyInfoService.deleteById(id);
+        return adminService.deleteById(id);
     }
 
     @ApiOperation("修改")
-    @RequiresAuthc
-    @PostMapping("/company_info/modify/{id}")
+    @PostMapping("/admin/modify/{id}")
     public CommonResult modify(@PathVariable(name = "id",required = true) Long id,
-                               @Valid @ApiParam @RequestBody CompanyInfoParam companyInfoParam,
+                               @Valid @ApiParam @RequestBody AdminParam adminParam,
                                BindingResult bindingResult) {
-        companyInfoParam.setId(id);
+        adminParam.setId(id);
         if(bindingResult.hasErrors()){
             return new CommonResult().validateFailed(bindingResult.getFieldError().getDefaultMessage());
         }else {
-            return new CommonResult().success(companyInfoService.modify(companyInfoParam));
+            return adminService.modify(adminParam);
         }
     }
 
     @ApiOperation("列表查询")
-    @GetMapping("/company_info/list")
-    public CommonResult list(PageParam page, CompanyInfoQuery companyInfoQuery) {
+    @GetMapping("/admin/list")
+    public CommonResult list(PageParam page, AdminQuery adminQuery) {
         Pageable pageable = PageRequest.of(page.getPage(),page.getSize());
-        return new CommonResult().success(companyInfoService.list(pageable,companyInfoQuery));
+        return new CommonResult().success(adminService.list(pageable,adminQuery));
+    }
+
+    @ApiOperation("用户登录")
+    @PostMapping("/admin/login")
+    public CommonResult login(@Valid @ApiParam @RequestBody AdminParam adminParam,
+                              BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return new CommonResult().validateFailed(bindingResult.getFieldError().getDefaultMessage());
+        }else {
+            return adminService.login(adminParam);
+        }
     }
 }

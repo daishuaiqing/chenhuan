@@ -1,5 +1,6 @@
 package com.daishuaiqing.chenhuan.controller;
 
+import com.daishuaiqing.chenhuan.authc.RequiresAuthc;
 import com.daishuaiqing.chenhuan.dto.CasesParam;
 import com.daishuaiqing.chenhuan.query.PageParam;
 import com.daishuaiqing.chenhuan.service.CasesService;
@@ -34,6 +35,7 @@ public class CasesController {
     }
 
     @ApiOperation("新增")
+    @RequiresAuthc
     @PostMapping("/cases/add")
     public CommonResult add(@Valid @ApiParam @RequestBody CasesParam casesParam,
                             BindingResult bindingResult) {
@@ -45,12 +47,14 @@ public class CasesController {
     }
 
     @ApiOperation("删除")
+    @RequiresAuthc
     @GetMapping("/cases/delete/{id}")
     public CommonResult deleteById(@PathVariable("id") Long id) {
         return casesService.deleteById(id);
     }
 
     @ApiOperation("修改")
+    @RequiresAuthc
     @PostMapping("/cases/modify/{id}")
     public CommonResult modify(@PathVariable(name = "id",required = true) Long id,
                                @Valid @ApiParam @RequestBody CasesParam casesParam,
