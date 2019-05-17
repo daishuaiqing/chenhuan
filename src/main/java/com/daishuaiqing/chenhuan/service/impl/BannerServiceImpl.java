@@ -54,6 +54,7 @@ public class BannerServiceImpl implements BannerService {
     @Override
     public Banner modify(BannerParam bannerParam) {
         Banner data = bannerDao.findById(bannerParam.getId()).orElse(null);
+        BeanUtils.copyProperties(bannerParam, data);
         return bannerDao.save(data);
     }
 

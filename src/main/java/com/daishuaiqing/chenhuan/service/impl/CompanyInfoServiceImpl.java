@@ -54,6 +54,7 @@ public class CompanyInfoServiceImpl implements CompanyInfoService {
     @Override
     public CompanyInfo modify(CompanyInfoParam companyInfoParam) {
         CompanyInfo data = companyInfoDao.findById(companyInfoParam.getId()).orElse(null);
+        BeanUtils.copyProperties(companyInfoParam, data);
         return companyInfoDao.save(data);
     }
 

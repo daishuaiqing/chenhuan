@@ -54,6 +54,7 @@ public class ServiceCustomerServiceImpl implements ServiceCustomerService {
     @Override
     public ServiceCustomer modify(ServiceCustomerParam serviceCustomerParam) {
         ServiceCustomer data = serviceCustomerDao.findById(serviceCustomerParam.getId()).orElse(null);
+        BeanUtils.copyProperties(serviceCustomerParam, data);
         return serviceCustomerDao.save(data);
     }
 

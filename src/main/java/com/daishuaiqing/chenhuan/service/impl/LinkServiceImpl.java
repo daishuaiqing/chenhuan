@@ -54,6 +54,7 @@ public class LinkServiceImpl implements LinkService {
     @Override
     public Link modify(LinkParam linkParam) {
         Link data = linkDao.findById(linkParam.getId()).orElse(null);
+        BeanUtils.copyProperties(linkParam, data);
         return linkDao.save(data);
     }
 

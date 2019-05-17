@@ -54,6 +54,7 @@ public class CasesServiceImpl implements CasesService {
     @Override
     public Cases modify(CasesParam casesParam) {
         Cases data = casesDao.findById(casesParam.getId()).orElse(null);
+        BeanUtils.copyProperties(casesParam, data);
         return casesDao.save(data);
     }
 
