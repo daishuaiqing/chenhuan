@@ -54,6 +54,7 @@ public class ForumServiceImpl implements ForumService {
     @Override
     public Forum modify(ForumParam forumParam) {
         Forum data = forumDao.findById(forumParam.getId()).orElse(null);
+        BeanUtils.copyProperties(forumParam, data);
         return forumDao.save(data);
     }
 
