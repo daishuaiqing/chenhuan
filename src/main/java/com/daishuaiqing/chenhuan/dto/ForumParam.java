@@ -32,4 +32,10 @@ public class ForumParam  {
     @ApiModelProperty(value="内容")
     private String content;
 
+    /**
+     * 小图
+     */
+    @ApiModelProperty(value="小图")
+    private String smallImage;
+
 }

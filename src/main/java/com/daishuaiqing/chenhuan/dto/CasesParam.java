@@ -3,8 +3,6 @@ package com.daishuaiqing.chenhuan.dto;
 import lombok.Data;
 import io.swagger.annotations.ApiModelProperty;
 
-import javax.persistence.Column;
-
 @Data
 public class CasesParam  {
 
@@ -33,5 +31,11 @@ public class CasesParam  {
      */
     @ApiModelProperty(value="内容")
     private String content;
+
+    /**
+     * 小图
+     */
+    @ApiModelProperty(value="小图")
+    private String smallImage;
 
 }

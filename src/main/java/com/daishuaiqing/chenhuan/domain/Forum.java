@@ -47,6 +47,12 @@ public class Forum  {
     private String content;
 
     /**
+     * 小图
+     */
+    @Column(name = "small_image")
+    private String smallImage;
+
+    /**
      * 创建时间
      */
     @Column(name = "create_time")
