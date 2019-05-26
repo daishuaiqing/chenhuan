@@ -35,7 +35,6 @@ public class RequesterInfoController {
     }
 
     @ApiOperation("新增")
-    @RequiresAuthc
     @PostMapping("/requester_info/add")
     public CommonResult add(@Valid @ApiParam @RequestBody RequesterInfoParam requesterInfoParam,
                             BindingResult bindingResult) {
@@ -54,7 +53,6 @@ public class RequesterInfoController {
     }
 
     @ApiOperation("修改")
-    @RequiresAuthc
     @PostMapping("/requester_info/modify/{id}")
     public CommonResult modify(@PathVariable(name = "id",required = true) Long id,
                                @Valid @ApiParam @RequestBody RequesterInfoParam requesterInfoParam,
