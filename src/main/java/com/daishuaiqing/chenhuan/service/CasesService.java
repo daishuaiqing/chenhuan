@@ -2,6 +2,7 @@ package com.daishuaiqing.chenhuan.service;
 
 import com.daishuaiqing.chenhuan.domain.Cases;
 import com.daishuaiqing.chenhuan.query.CasesQuery;
+import com.daishuaiqing.chenhuan.vo.CasesDetail;
 import com.daishuaiqing.chenhuan.vo.CommonResult;
 import com.daishuaiqing.chenhuan.dto.CasesParam;
 import org.springframework.data.domain.Page;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public interface CasesService {
 
-    Cases findById(Long id);
+    CasesDetail findById(Long id);
 
     List<Cases> findAll();
 

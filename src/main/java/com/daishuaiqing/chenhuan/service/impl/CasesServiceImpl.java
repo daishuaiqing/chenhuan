@@ -5,6 +5,7 @@ import com.daishuaiqing.chenhuan.dao.CasesDao;
 import com.daishuaiqing.chenhuan.service.CasesService;
 import com.daishuaiqing.chenhuan.query.CasesQuery;
 import com.daishuaiqing.chenhuan.dto.CasesParam;
+import com.daishuaiqing.chenhuan.vo.CasesDetail;
 import com.daishuaiqing.chenhuan.vo.CommonResult;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,14 @@ public class CasesServiceImpl implements CasesService {
     }
 
     @Override
-    public Cases findById(Long id) {
-        return casesDao.findById(id).orElse(null);
+    public CasesDetail findById(Long id) {
+        CasesDetail casesDetail = new CasesDetail();
+        casesDetail.setCases(casesDao.findById(id).orElse(null));
+        List<Cases> lastCases = casesDao.findLastCasesById(id);
+        List<Cases> nextCases = casesDao.findNextCasesById(id);
+        casesDetail.setLastCases(lastCases.size()>0?lastCases.get(0):null);
+        casesDetail.setLastCases(nextCases.size()>0?nextCases.get(0):null);
+        return casesDetail;
     }
 
     @Override

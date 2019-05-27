@@ -6,6 +6,7 @@ import com.daishuaiqing.chenhuan.service.ForumService;
 import com.daishuaiqing.chenhuan.query.ForumQuery;
 import com.daishuaiqing.chenhuan.dto.ForumParam;
 import com.daishuaiqing.chenhuan.vo.CommonResult;
+import com.daishuaiqing.chenhuan.vo.ForumDetail;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -34,8 +35,15 @@ public class ForumServiceImpl implements ForumService {
     }
 
     @Override
-    public Forum findById(Long id) {
-        return forumDao.findById(id).orElse(null);
+    public ForumDetail findById(Long id) {
+        ForumDetail forumDetail = new ForumDetail();
+        Forum forum = forumDao.findById(id).orElse(null);
+        forumDetail.setForum(forum);
+        List<Forum> lastForum = forumDao.findLastForumById(id);
+        List<Forum> nextForum = forumDao.findNextForumById(id);
+        forumDetail.setLastForum(lastForum.size()>0?lastForum.get(0):null);
+        forumDetail.setNextForum(nextForum.size()>0?nextForum.get(0):null);
+        return forumDetail;
     }
 
     @Override

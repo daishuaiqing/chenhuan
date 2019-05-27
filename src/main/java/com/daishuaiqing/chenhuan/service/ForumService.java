@@ -4,6 +4,7 @@ import com.daishuaiqing.chenhuan.domain.Forum;
 import com.daishuaiqing.chenhuan.query.ForumQuery;
 import com.daishuaiqing.chenhuan.vo.CommonResult;
 import com.daishuaiqing.chenhuan.dto.ForumParam;
+import com.daishuaiqing.chenhuan.vo.ForumDetail;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -11,7 +12,7 @@ import java.util.List;
 
 public interface ForumService {
 
-    Forum findById(Long id);
+    ForumDetail findById(Long id);
 
     List<Forum> findAll();
 
