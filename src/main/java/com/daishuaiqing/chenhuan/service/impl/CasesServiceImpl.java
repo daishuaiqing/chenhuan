@@ -41,7 +41,7 @@ public class CasesServiceImpl implements CasesService {
         List<Cases> lastCases = casesDao.findLastCasesById(id);
         List<Cases> nextCases = casesDao.findNextCasesById(id);
         casesDetail.setLastCases(lastCases.size()>0?lastCases.get(0):null);
-        casesDetail.setLastCases(nextCases.size()>0?nextCases.get(0):null);
+        casesDetail.setNextCases(nextCases.size()>0?nextCases.get(0):null);
         return casesDetail;
     }
 
