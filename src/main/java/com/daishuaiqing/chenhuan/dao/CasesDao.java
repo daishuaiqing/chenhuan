@@ -11,6 +11,6 @@ public interface CasesDao extends JpaRepository<Cases, Long>,JpaSpecificationExe
     @Query(value = "SELECT * FROM `cases` WHERE `id`<?1 ORDER BY `id` DESC LIMIT 1",nativeQuery = true)
     List<Cases> findLastCasesById(Long id);
 
-    @Query(value = "SELECT * FROM `cases` WHERE `id`>=?1 ORDER BY `id` ASC LIMIT 2",nativeQuery = true)
+    @Query(value = "SELECT * FROM `cases` WHERE `id`>?1 ORDER BY `id` ASC LIMIT 1",nativeQuery = true)
     List<Cases> findNextCasesById(Long id);
 }
