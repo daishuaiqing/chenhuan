@@ -56,4 +56,28 @@ public class CompanyInfoParam  {
     @ApiModelProperty(value="地址")
     private String address;
 
+    /**
+     * 网站标题
+     */
+    @ApiModelProperty(value="网站标题")
+    private String title;
+
+    /**
+     * head代码
+     */
+    @ApiModelProperty(value="head代码")
+    private String headWord;
+
+    /**
+     * icp网站备案
+     */
+    @ApiModelProperty(value="icp网站备案")
+    private String icp;
+
+    /**
+     * 关键字
+     */
+    @ApiModelProperty(value="关键字")
+    private String keyword;
+
 }

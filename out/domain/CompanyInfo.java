@@ -1,5 +1,3 @@
-package com.daishuaiqing.chenhuan.domain;
-
 import javax.persistence.*;
 import lombok.Data;
 import com.fasterxml.jackson.annotation.JsonInclude;

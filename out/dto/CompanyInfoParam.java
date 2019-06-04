@@ -1,115 +1,97 @@
-package com.daishuaiqing.chenhuan.domain;
 
-import javax.persistence.*;
 import lombok.Data;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
-import java.time.LocalDateTime;
 
-
-@Entity
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@SQLDelete(sql = "update company_info set is_deleted=1 where id=?")
-@Where(clause = "is_deleted = 0")
-@Table(name = "company_info")
 @Data
-public class CompanyInfo  {
+public class CompanyInfoParam  {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
      * 公司名称
      */
-    @Column(name = "company_name")
+    @ApiModelProperty(value="公司名称")
     private String companyName;
 
     /**
      * 简介
      */
-    @Column(name = "short_describe")
+    @ApiModelProperty(value="简介")
     private String shortDescribe;
 
     /**
      * 声明
      */
-    @Column(name = "notice")
+    @ApiModelProperty(value="声明")
     private String notice;
 
     /**
      * 联系人
      */
-    @Column(name = "contacts")
+    @ApiModelProperty(value="联系人")
     private String contacts;
 
     /**
      * 电话
      */
-    @Column(name = "phone_number")
+    @ApiModelProperty(value="电话")
     private String phoneNumber;
 
     /**
      * 微信二维码
      */
-    @Column(name = "wx_qr_code")
+    @ApiModelProperty(value="微信二维码")
     private String wxQrCode;
 
     /**
      * 邮箱
      */
-    @Column(name = "email")
+    @ApiModelProperty(value="邮箱")
     private String email;
 
     /**
      * 地址
      */
-    @Column(name = "address")
+    @ApiModelProperty(value="地址")
     private String address;
 
     /**
      * 网站标题
      */
-    @Column(name = "title")
+    @ApiModelProperty(value="网站标题")
     private String title;
 
     /**
      * head代码
      */
-    @Column(name = "head_word")
+    @ApiModelProperty(value="head代码")
     private String headWord;
 
     /**
      * icp网站备案
      */
-    @Column(name = "icp")
+    @ApiModelProperty(value="icp网站备案")
     private String icp;
 
     /**
      * 关键字
      */
-    @Column(name = "keyword")
+    @ApiModelProperty(value="关键字")
     private String keyword;
 
     /**
      * 创建时间
      */
-    @Column(name = "create_time")
     private LocalDateTime createTime;
 
     /**
      * 上次更新时间
      */
-    @Column(name = "update_time")
     private LocalDateTime updateTime;
 
     /**
      * 是否删除
      */
-    @Column(name = "is_deleted")
     private Integer deleted;
 
 
